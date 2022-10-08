@@ -30,7 +30,13 @@ def load_data(text_path, img_path):
 #     texts = list(text_data['text'])
 #     clip_texts = [text[:155] for text in texts]
     text_labels = np.array(text_data['labels'].unique())
-    labels = [0.0 if l=='very harmful' elif 1.0 for l=='somewhat harmful' else 2.0 for l in text_data['labels']]
+    labels = [for i in range(len(Y)) :
+  if (Y[i]=="very harmful") :
+    labels[i][0] = 1
+  elif (Y[i]=="somewhat harmful") :
+    labels[i][1] = 1
+  else :
+    labels[i][2] = 1 ]
     labels = torch.tensor(labels, dtype=torch.long)
     imgs = [Image.open(os.path.join(img_path, img_dir)).convert('RGB') for img_dir in image_dirs]
     return imgs, text_labels, labels
