@@ -31,7 +31,7 @@ def load_data(text_path, img_path):
 #     clip_texts = [text[:155] for text in texts]
     text_labels = np.array(text_data['labels'].unique())
   
-      labels=[]
+    labels=[]
     for label in text_data['labels']:
       if label=='very harmful':
           labels.append(0.0)
