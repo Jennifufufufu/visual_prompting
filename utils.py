@@ -22,11 +22,11 @@ class ImgDataset(Dataset):
 
 def load_data(text_path, img_path):
     text_data = pd.read_csv(text_path,header=None)
-    text_data.columns=['id','text_a','text_b','label']
+    text_data.columns=['Unnamed','id','labels','text']
     image_dirs = os.listdir(img_path)
     image_ids = [f[:-4] for f in image_dirs]
     text_data = text_data[text_data['id'].isin(image_ids)]
-    text_data['text'] = text_data['text_a']+" "+text_data['text_b']
+    text_data['text'] = text_data['text']
 #     texts = list(text_data['text'])
 #     clip_texts = [text[:155] for text in texts]
     text_labels = np.array(text_data['label'].unique())
