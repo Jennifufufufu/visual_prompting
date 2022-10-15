@@ -42,7 +42,9 @@ def load_data(text_path, img_path):
             labels.append(2.0)
           
     labels = torch.tensor(labels, dtype=torch.long)
-
+    image_dirs = []
+    for i in range(len(text_data["id"])):
+        image_dirs.append(text_data["id"][i])
     imgs = [Image.open(os.path.join(img_path, img_dir)).convert('RGB') for img_dir in image_dirs]
     return imgs, text_labels, labels
     
